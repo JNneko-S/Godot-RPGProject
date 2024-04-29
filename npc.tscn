@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://dglfoji71th6a"]
+
+[ext_resource type="Script" path="res://npc.gd" id="1_8dnj7"]
+[ext_resource type="Texture2D" uid="uid://dtg5uvupnneby" path="res://Player/AnimationSheet_Character.png" id="1_p25xv"]
+
+[sub_resource type="Animation" id="Animation_j85i2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gees3"]
+resource_name = "taiki"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jijup"]
+_data = {
+"RESET": SubResource("Animation_j85i2"),
+"taiki": SubResource("Animation_gees3")
+}
+
+[node name="NPC" type="Node2D"]
+script = ExtResource("1_8dnj7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_p25xv")
+hframes = 8
+vframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jijup")
+}
